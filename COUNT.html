@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PO Count Dashboard color: #333</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000057;
+            text-align: center;
+            padding: 50px;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .counter {
+            font-size: 10vw; /* Responsive font size */
+            color: Yellow;
+font-weight: bold;
+            margin: 20px 0;
+        }
+        .label {
+            font-size: 4vw; /* Responsive label size */
+            color: white;
+font-weight: bold;
+        }
+        .total-received {
+            font-size: 12vw; /* Larger font size for total received */
+            font-weight: bold;
+            color: white;
+            margin: 20px 0;
+        }
+        .pending-completed {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<h1 style="color:white;">Purchase Order Counts Summery</h1>
+    
+    <div class="total-received" id="receivedCounter">0</div>
+    <div class="label">Total Received POs</div>
+    
+    <div class="pending-completed">
+        <div class="counter" style="margin-right: 50px;">
+            <span id="pendingCounter">0</span>
+            <div class="label">Pending POs</div>
+        </div>
+        <div class="counter">
+            <span id="completedCounter">0</span>
+            <div class="label">Completed POs</div>
+        </div>
+    </div>
+
+    <script>
+        function animateCounter(id, start, end, duration) {
+            let current = start;
+            const stepTime = Math.abs(Math.floor(duration / (end - start)));
+            const counter = document.getElementById(id);
+
+            const timer = setInterval(function() {
+                current++;
+                counter.textContent = current;
+
+                if (current === end) {
+                    clearInterval(timer);
+                }
+            }, stepTime);
+        }
+
+        // Define your counts here
+        const pendingCount = 120;     // Example count for Pending POs
+        const receivedCount = 300;      // Example count for Received POs
+        const completedCount = 45;     // Example count for Completed POs
+
+        // Start the animations
+        animateCounter('pendingCounter', 0, pendingCount, 5000);
+        animateCounter('receivedCounter', 0, receivedCount, 5000);
+        animateCounter('completedCounter', 0, completedCount, 5000);
+    </script>
+</body>
+</html>
