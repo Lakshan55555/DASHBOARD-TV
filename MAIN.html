@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open Websites Sequentially</title>
+    <script>
+        function openWebsites() {
+            // Define the URLs of your websites
+            const websites = [
+                "https://www.w3schools.com/html/html_styles.asp", // Replace with your actual website 1 URL
+                "https://convertingcolors.com", // Replace with your actual website 2 URL
+                "https://www.youtube.com/"  // Replace with your actual website 3 URL
+            ];
+
+            // Open the first website immediately
+            window.open(websites[0], "_blank");
+
+            // Set a timeout to open the second website after 20 seconds
+            setTimeout(() => {
+                window.open(websites[1], "_blank");
+            }, 20000); // 20000 milliseconds = 20 seconds
+
+            // Set a timeout to open the third website after 40 seconds
+            setTimeout(() => {
+                window.open(websites[2], "_blank");
+            }, 40000); // 40000 milliseconds = 40 seconds
+        }
+    </script>
+</head>
+<body onload="openWebsites()">
+    <h1>Opening Websites Sequentially</h1>
+    <p>Your first website will open now, followed by the second and third websites after 20 seconds each.</p>
+</body>
+</html>
