@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PO Count Dashboard color: #333</title>
+    <title>PO Count Dashboard</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -19,13 +19,13 @@
         .counter {
             font-size: 10vw; /* Responsive font size */
             color: Yellow;
-font-weight: bold;
+            font-weight: bold;
             margin: 20px 0;
         }
         .label {
             font-size: 4vw; /* Responsive label size */
             color: white;
-font-weight: bold;
+            font-weight: bold;
         }
         .total-received {
             font-size: 12vw; /* Larger font size for total received */
@@ -43,7 +43,7 @@ font-weight: bold;
 </head>
 <body>
 
-<h1 style="color:white;">Purchase Order Counts Summery</h1>
+<h1 style="color:white;">Purchase Order Counts Summary</h1>
     
     <div class="total-received" id="receivedCounter">0</div>
     <div class="label">Total Received POs</div>
@@ -62,17 +62,20 @@ font-weight: bold;
     <script>
         function animateCounter(id, start, end, duration) {
             let current = start;
-            const stepTime = Math.abs(Math.floor(duration / (end - start)));
+            const increment = Math.ceil((end - start) / (duration / 50)); // Calculate increment
             const counter = document.getElementById(id);
 
             const timer = setInterval(function() {
-                current++;
-                counter.textContent = current;
+                current += increment; // Increment the current count
 
-                if (current === end) {
-                    clearInterval(timer);
+                // Ensure current does not exceed end
+                if (current >= end) {
+                    current = end;
+                    clearInterval(timer); // Stop the timer when we reach the end
                 }
-            }, stepTime);
+
+                counter.textContent = current; // Update the displayed count
+            }, 50); // Update every 50 milliseconds
         }
 
         // Define your counts here
@@ -81,9 +84,9 @@ font-weight: bold;
         const completedCount = 45;     // Example count for Completed POs
 
         // Start the animations
-        animateCounter('pendingCounter', 0, pendingCount, 100);
-        animateCounter('receivedCounter', 0, receivedCount, 100);
-        animateCounter('completedCounter', 0, completedCount, 100);
+        animateCounter('pendingCounter', 0, pendingCount, 2000); // 2 seconds duration
+        animateCounter('receivedCounter', 0, receivedCount, 2000); // 2 seconds duration
+        animateCounter('completedCounter', 0, completedCount, 2000); // 2 seconds duration
     </script>
 </body>
 </html>
