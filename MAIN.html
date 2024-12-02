@@ -3,33 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Open Websites Sequentially</title>
-    <script>
-        function openWebsites() {
-            // Define the URLs of your websites
-            const websites = [
-                "https://lakshan55555.github.io/DASHBOARD-TV/COUNT.html", // Replace with your actual website 1 URL
-                "https://lakshan55555.github.io/DASHBOARD-TV/ISSUE.html", // Replace with your actual website 2 URL
-                "https://lakshan55555.github.io/CARLTON-DASHBOARD/DASHBOARD.html",  // Replace with your actual website 3 URL
-            ];
-
-            // Open the first website immediately
-            window.open(websites[0], "_blank");
-
-            // Set a timeout to open the second website after 20 seconds
-            setTimeout(() => {
-                window.open(websites[1], "_blank");
-            }, 120000); // 20000 milliseconds = 20 seconds
-
-            // Set a timeout to open the third website after 40 seconds
-            setTimeout(() => {
-                window.open(websites[2], "_blank");
-            }, 120000); // 40000 milliseconds = 40 seconds
-        }
-    </script>
+    <title>Website Rotator</title>
 </head>
-<body onload="openWebsites()">
-    <h1>Opening Websites Sequentially</h1>
-    <p>Your first website will open now, followed by the second and third websites after 20 seconds each.</p>
+<body>
+    <iframe id="websiteFrame" width="100%" height="600px" style="border: none;"></iframe>
+
+    <script>
+        // Array of website URLs
+        const websites = [
+            'https://lakshan55555.github.io/DASHBOARD-TV/COUNT.html',
+            'https://lakshan55555.github.io/DASHBOARD-TV/ISSUE.html',
+            'https://lakshan55555.github.io/CARLTON-DASHBOARD/DASHBOARD.html'
+        ];
+
+        let currentIndex = 0;
+
+        function loadNextWebsite() {
+            // Load the next website in the iframe
+            document.getElementById('websiteFrame').src = websites[currentIndex];
+
+            // Increment index and loop if necessary
+            currentIndex = (currentIndex + 1) % websites.length;
+        }
+
+        // Load the first website when the page loads
+        window.onload = function() {
+            loadNextWebsite();
+            // Set interval to load the next website every 2 minutes (120,000 milliseconds)
+            setInterval(loadNextWebsite, 120000);
+        };
+    </script>
 </body>
 </html>
